@@ -1,0 +1,50 @@
+{% extends 'Student/common_st.html' %}
+{% load static %}
+{% for m in messages %}
+<script>
+    alert("{{m}}")
+</script>
+{% endfor %}
+{% block content %}
+	
+	<section class="hero-wrap" style="background-image: url('../static/images/bg_2.jpg');height:350px ;">
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-end justify-content-center">
+				<div class="col-md-9 ftco-animate pb-5 text-center">
+					<!-- <p class="breadcrumbs"><span class="mr-2"><a href="/studenthome">Home <i class="fa fa-chevron-right"></i></a></span> <span>View Demo<i class="fa fa-chevron-right"></i></span></p>
+					<h1 class="mb-0 bread">View Demo</h1> -->
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section class="ftco-section">
+							<div class="col-lg-12 col-md-7 order-md-last d-flex align-items-stretch">
+								<div class="contact-wrap w-100 p-md-5 p-4">
+									<h3 class="mb-4">View Demo</h3>
+									<table class="table table-hover" cellspacing="2" cellpadding="2">
+                                        <thread>
+                                          <tr class="table-info">
+											  <th scope="col">Tutor name</th>
+											  <th scope="col">Video</th>
+                                          </tr>   
+                                          {% for i in data %}
+                                        </thread>
+                                        <tbody>
+                                          <tr>
+                                              <!-- <td><source src="../static/media/{{i.Video}}"></td> -->
+											  <td>{{i.teacher.username5}}</td>
+											  <td><video src="/static/media/{{i.Video}}" controls style="width: 1000px;"></video></td>
+                                          </tr>
+                                          {% endfor %}
+                                        </tbody>
+                                      </table> 
+								</div>
+							</div>
+							
+						
+	</section>
+	{% endblock %}
+
+
+	

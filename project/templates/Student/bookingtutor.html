@@ -1,0 +1,120 @@
+{% extends 'Student/common_st.html' %}
+{% load static %}
+
+{% for m in messages %}
+<script>
+    alert("{{m}}")
+</script>
+{% endfor %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero-wrap" style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../static/images/bg_2.jpg') no-repeat center center/cover; height: 350px;">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 text-center text-white">
+                <h1 class="mb-3">Book a Tutor</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Styling -->
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .contact-wrap {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        width: 100%;
+    }
+
+    .form-group label {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .form-group select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        outline: none;
+        transition: 0.3s ease-in-out;
+    }
+
+    .form-group select:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #007bff;
+        border: none;
+        transition: 0.3s ease-in-out;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    @media (max-width: 768px) {
+        .contact-wrap {
+            padding: 20px;
+        }
+    }
+</style>
+
+<!-- Booking Form Section -->
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="contact-wrap">
+                    <h3 class="mb-4 text-center">Book a Tutor</h3>
+                    <form method="POST" enctype="multipart/form-data" id="contactForm" class="contactForm">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="booking_type">Mode:</label>
+                                    <select name="booking" required>
+                                        <option value="online">Online</option>
+                                        <option value="offline">Offline</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="time">Time:</label>
+                                    <select name="time" required>
+                                        <option value="9-11">9-11</option>
+                                        <option value="11-1">11-1</option>
+                                        <option value="2-4">2-4</option>
+                                        <option value="4-6">4-6</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group text-center">
+                                    <input type="submit" value="Submit" class="btn btn-primary">
+                                    <div class="submitting"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>  
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

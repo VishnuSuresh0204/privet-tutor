@@ -1,0 +1,96 @@
+{% extends 'Admin/common_ad.html' %}
+{% load static %}
+{% for m in messages %}
+<script>
+    alert("{{m}}")
+</script>
+{% endfor %}
+{% block content %}
+	
+	<section class="hero-wrap" style="background-image: url('../static/images/bg_2.jpg');height: 350px;">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-end justify-content-center">
+				<div class="col-md-9 ftco-animate pb-5 text-center">
+					<!-- <p class="breadcrumbs"><span class="mr-2"><a href="/adminhome">Home <i class="fa fa-chevron-right"></i></a></span> <span>Add Tutor<i class="fa fa-chevron-right"></i></span></p>
+					<h1 class="mb-0 bread">Add Tutor</h1> -->
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6">
+					<div class="wrapper">
+						<div class="row no-gutters">
+							<div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
+								<div class="contact-wrap w-100 p-md-5 p-4">
+									<h3 class="mb-4">Add Tutor</h3>
+									<form method="POST" enctype="multipart/form-data" id="contactForm" class="contactForm">
+										{% csrf_token %}
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label class="label" for="name">Username</label>
+													<input type="text" class="form-control" name="username4" id="username" placeholder="Enter username" required>
+												</div>
+											</div>
+											<div class="col-md-12"> 
+												<div class="form-group">
+													<label class="label" for="email">Email</label>
+													<input type="email" class="form-control" name="email4" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="email" placeholder="Enter email" required>
+												</div>
+											</div>
+											<div class="col-md-12"> 
+												<div class="form-group">
+													<label class="label" for="email">Image</label>
+													<input type="file" class="form-control" name="image4" required>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label class="label" for="subject">Password</label>
+													<input type="password" maxlength="8" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+													title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" name="password4" id="password" placeholder="Enter password" required>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label class="label" for="subject">Subject</label>
+													<input type="text" class="form-control" name="subject" id="subject" placeholder="Enter subject" required>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label class="label" for="subject">Location</label>
+													<input type="location"  class="form-control" name="location" id="location" placeholder="Enter location" required>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label class="label" for="subject">Fee</label>
+													<input type="text" class="form-control" name="fee" id="subject" placeholder="fee per day" required>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<input type="submit" value="Submit" class="btn btn-primary">
+													<div class="submitting"></div>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	{% endblock %}
+
+
+	

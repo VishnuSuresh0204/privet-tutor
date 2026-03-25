@@ -1,0 +1,83 @@
+{% extends 'Admin/common_ad.html' %}
+{% load static %}
+{% for m in messages %}
+<script>
+    alert("{{m}}")
+</script>
+{% endfor %}
+{% block content %}
+	
+	<section class="hero-wrap" style="background-image: url('../static/images/bg_2.jpg');height: 350px;">
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-end justify-content-center">
+				<div class="col-md-9 ftco-animate pb-5 text-center">
+					<!-- <p class="breadcrumbs"><span class="mr-2"><a href="/adminhome">Home <i class="fa fa-chevron-right"></i></a></span> <span>Add E-Books<i class="fa fa-chevron-right"></i></span></p>
+					<h1 class="mb-0 bread">Add E-Books</h1> -->
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6">
+					<div class="wrapper">
+						<div class="row no-gutters">
+							<div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
+								<div class="contact-wrap w-100 p-md-5 p-4">
+									<h3 class="mb-4">Add E-Books</h3>
+									<form method="POST" enctype="multipart/form-data" id="contactForm" class="contactForm">
+										{% csrf_token %}
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label class="label" for="name">Subject</label>
+													<input type="text" class="form-control" name="subject8" id="username" placeholder="Enter bookname" required>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label class="label" for="name">Book name</label>
+													<input type="text" class="form-control" name="bookname1" id="username" placeholder="Enter bookname" required>
+												</div>
+											</div>
+											<div class="col-md-12"> 
+												<div class="form-group">
+													<label class="label" for="email">Image</label>
+													<input type="file" class="form-control" name="image1" id="image" required>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label class="label" for="subject">Description</label>
+													<textarea name="description1" class="form-control" id="address" cols="30" rows="4" placeholder="Enter description" required></textarea>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label class="label" for="name">Book Link</label>
+													<input type="text" class="form-control" name="link" id="username" placeholder="Enter link" required>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<input type="submit" value="Submit" class="btn btn-primary">
+													<div class="submitting"></div>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	{% endblock %}
+
+
+	

@@ -1,0 +1,114 @@
+{% extends 'Student/common_st.html' %}
+{% load static %}
+{% for m in messages %}
+<script>
+    alert("{{m}}")
+</script>
+{% endfor %}
+{% block content %}
+	
+	<section class="hero-wrap" style="background-image: url('../static/images/bg_2.jpg');height: 350px;">
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-end justify-content-center">
+				<div class="col-md-9 ftco-animate pb-5 text-center">
+					<!-- <p class="breadcrumbs"><span class="mr-2"><a href="/studenthome">Home <i class="fa fa-chevron-right"></i></a></span> <span>Rate Tutor<i class="fa fa-chevron-right"></i></span></p>
+					<h1 class="mb-0 bread">Rate Tutor</h1> -->
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6">
+					<div class="wrapper">
+						<div class="row no-gutters">
+							<div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
+								<div class="contact-wrap w-100 p-md-5 p-4">
+									<h3 class="mb-4">{% if edit_mode %}Update Review{% else %}Add Review{% endif %}</h3>
+									<form method="POST" enctype="multipart/form-data" id="contactForm" class="contactForm">
+										{% csrf_token %}
+										<div class="row">
+											<div class="col-md-12">
+                                                </div>
+                                                    <div class="rate">
+                                                        <input type="radio" id="star5" name="rating1" value="5" {% if review.rating == 5 %}checked{% endif %} />
+                                                        <label for="star5" title="text">5 stars</label>
+                                                        <input type="radio" id="star4" name="rating1" value="4" {% if review.rating == 4 %}checked{% endif %} />
+                                                        <label for="star4" title="text">4 stars</label>
+                                                        <input type="radio" id="star3" name="rating1" value="3" {% if review.rating == 3 %}checked{% endif %} />
+                                                        <label for="star3" title="text">3 stars</label>
+                                                        <input type="radio" id="star2" name="rating1" value="2" {% if review.rating == 2 %}checked{% endif %} />
+                                                        <label for="star2" title="text">2 stars</label>
+                                                        <input type="radio" id="star1" name="rating1" value="1" {% if review.rating == 1 %}checked{% endif %} />
+                                                        <label for="star1" title="text">1 star</label>
+                                                      </div><br><br><br>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label class="label" for="subject">Review</label>
+													<textarea name="review1" class="form-control" id="address" cols="30" rows="4" placeholder="Enter review" required>{% if edit_mode %}{{ review.review }}{% endif %}</textarea>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<input type="submit" value="{% if edit_mode %}Update{% else %}Submit{% endif %}" class="btn btn-primary">
+													<div class="submitting"></div>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .rate {
+            float: left;
+            height: 46px;
+            padding: 0 10px;
+        }
+        .rate:not(:checked) > input {
+            position: absolute;
+            top: -9999px;
+        }
+        .rate:not(:checked) > label {
+            float: right;
+            width: 1em;
+            overflow: hidden;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 30px;
+            color:#ccc;
+        }
+        .rate:not(:checked) > label:before {
+            content: '★ ';
+        }
+        .rate>input:checked ~ label {
+            color:#070707;
+        }
+        .rate:not(:checked) > label:hover,
+        .rate:not(:checked) > label:hover~label {
+            color:#0c0c0c;
+        }
+        .rate > input:checked + label:hover,
+        .rate > input:checked + label:hover ~ label,
+        .rate > input:checked ~ label:hover,
+        .rate > input:checked ~ label:hover ~ label,
+        .rate > label:hover ~ input:checked ~ label {
+            color:#0a0a0a;
+        }
+    </style>
+	{% endblock %}
+
+
+	

@@ -1,0 +1,17 @@
+tutor/
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv
+env/
+venv/
+ENV/
+db.sqlite3
+media/
+static/admin/
+.idea/
+.vscode/
+*.log
+.DS_Store
+.gemini/

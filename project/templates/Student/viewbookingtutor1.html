@@ -1,0 +1,98 @@
+{% extends 'Student/common_st.html' %}
+{% load static %}
+{% for m in messages %}
+<script>
+    alert("{{m}}")
+</script>
+{% endfor %}
+{% block content %}
+	
+	<section class="hero-wrap" style="background-image: url('../static/images/bg_2.jpg');height:350px;">
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-end justify-content-center">
+				<div class="col-md-9 ftco-animate pb-5 text-center">
+					<!-- <p class="breadcrumbs"><span class="mr-2"><a href="/studenthome">Home <i class="fa fa-chevron-right"></i></a></span> <span>View booking<i class="fa fa-chevron-right"></i></span></p>
+					<h1 class="mb-0 bread">View booking</h1> -->
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section class="ftco-section">
+		<!--<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-12">
+					<div class="wrapper">
+						<div class="row no-gutters" style="margin-left: 150px;">-->
+							<div class="col-lg-12 col-md-7 order-md-last d-flex align-items-stretch">
+								<div class="contact-wrap w-100 p-md-5 p-4">
+									<h3 class="mb-4">View booking</h3>
+									<table class="table table-hover" cellspacing="2" cellpadding="2">
+                                        <thread>
+                                          <tr class="table-info">
+                                            <th scope="col">Tutor name</th>
+                                              <th scope="col">Mode</th>
+                                              <th scope="col">Time</th>
+                                              <th scope="col">Fee</th>
+                                              <th colspan="3" scope="col">Action</th>
+											  <!-- <th>Payment</th> -->
+                                          </tr>   
+                                          {% for i in data %}
+                                        </thread>
+                                        <tbody>
+                                          <tr>
+                                            <td>{{i.teacher.username5}}</td>
+                                            <td>{{i.booking_type1}}</td>
+                                            <td>{{i.booking_time1}}</td>
+											<td>{{i.teacher.fee}}</td>
+											
+                                            {% if i.status == 'Approved' %}
+                                            <td><a href="/request_demo?id={{i.id}}" class="btn btn-success">Request Demo</a></td>
+
+                                            {% elif i.status == 'Uploaded' %}
+											<td><a href="/viewrequestdemo?id={{i.id}}" class="btn btn-success">View</a></td>
+
+											<td>
+                                                {% if i.has_review %}
+                                                    <a href="/viewreview_stu" class="btn btn-info">View Review</a>
+                                                {% else %}
+                                                    <a href="/addreview_student?booking_id={{i.id}}" class="btn btn-success">Add Review</a>
+                                                {% endif %}
+                                            </td>
+
+											<td>
+                                                {% if i.has_paid %}
+                                                    <span class="badge bg-info">Already Paid</span>
+                                                {% else %}
+                                                    <a href="/addpaymentpa?id={{i.teacher.id}}" class="btn btn-success">Pay</a>
+                                                {% endif %}
+                                            </td>
+
+                                            <td>
+                                                {% if i.has_notes %}
+                                                    <a href="/view_notes_stu?id={{i.id}}" class="btn btn-info">View Notes</a>
+                                                {% endif %}
+                                            </td>
+
+
+                                            {% else %}
+											<!-- <td><a href="/deletebooking?id={{i.id}}" class="btn btn-success">Reject</a></td> -->
+                                            <td style="color: crimson;">{{i.status}}</td>
+                                            {% endif %}
+                                          </tr>
+                                          {% endfor %}
+                                        </tbody>
+                                      </table> 
+								</div>
+							</div>
+							
+					<!--	</div>
+					</div>
+				</div>
+			</div>
+		</div>-->
+	</section>
+	{% endblock %}
+
+
+	

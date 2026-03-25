@@ -1,0 +1,78 @@
+{% extends 'Admin/common_ad.html' %}
+{% load static %}
+{% for m in messages %}
+<script>
+    alert("{{m}}")
+</script>
+{% endfor %}
+{% block content %}
+	
+	<section class="hero-wrap" style="background-image: url('../static/images/bg_2.jpg');height: 350px;">
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-end justify-content-center">
+				<div class="col-md-9 ftco-animate pb-5 text-center">
+					<h3 class="mb-4">Edit E-Book</h3>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6">
+					<div class="wrapper">
+						<div class="row no-gutters">
+							<div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
+								<div class="contact-wrap w-100 p-md-5 p-4">
+									<h3 class="mb-4">Edit E-Book</h3>
+									<form method="POST" enctype="multipart/form-data" id="editForm" class="contactForm">
+										{% csrf_token %}
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label class="label" for="subject8">Subject</label>
+													<input type="text" class="form-control" name="subject8" value="{{ book.subject1 }}" placeholder="Enter subject" required>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label class="label" for="bookname1">Book name</label>
+													<input type="text" class="form-control" name="bookname1" value="{{ book.Bookname }}" placeholder="Enter bookname" required>
+												</div>
+											</div>
+											<div class="col-md-12"> 
+												<div class="form-group">
+													<label class="label" for="image1">Image (leave blank to keep current)</label>
+													<input type="file" class="form-control" name="image1">
+                                                    <p><small>Current: {{ book.Image }}</small></p>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label class="label" for="description1">Description</label>
+													<textarea name="description1" class="form-control" cols="30" rows="4" placeholder="Enter description" required>{{ book.Description }}</textarea>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label class="label" for="link">Book Link</label>
+													<input type="text" class="form-control" name="link" value="{{ book.link }}" placeholder="Enter link" required>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<input type="submit" value="Update Book" class="btn btn-primary">
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

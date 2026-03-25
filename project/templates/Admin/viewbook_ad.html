@@ -1,0 +1,177 @@
+{% extends 'Admin/common_ad.html' %}
+{% load static %}
+{% for m in messages %}
+<script>
+    alert("{{m}}")
+</script>
+{% endfor %}
+{% block content %}
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"> -->
+	<section class="hero-wrap " style="background-image: url('../static/images/bg_2.jpg');height: 350px;">
+		
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-end justify-content-center">
+				<div class="col-md-9 ftco-animate pb-5 text-center">
+					<!-- <p class="breadcrumbs"><span class="mr-2"><a href="/parenthome">Home <i class="fa fa-chevron-right"></i></a></span> <span>View E-Books<i class="fa fa-chevron-right"></i></span></p>
+					<h1 class="mb-0 bread">View E-Books</h1> -->
+				</div>
+			</div>
+		</div>
+	</section>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+<br>
+<br>
+<br>
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+
+        {% if msg %}
+            <div class="alert alert-success">
+                {{ msg }}
+            </div>
+        {% endif %}
+
+        <!-- Search box -->
+        <div class="mb-3">
+            <input type="text" class="form-control" id="bookSearch" placeholder="Search by book name">
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .book-card-container {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        background: #fff;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .book-card-container:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+    }
+    .book-img-wrapper {
+        position: relative;
+        padding-top: 140%; /* Book-like aspect ratio */
+        overflow: hidden;
+    }
+    .book-img-wrapper img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    .book-card-container:hover .book-img-wrapper img {
+        transform: scale(1.1);
+    }
+    .book-info {
+        padding: 20px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    .book-title {
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .book-description {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 15px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .book-meta {
+        margin-top: auto;
+        font-size: 0.8rem;
+        color: #888;
+    }
+    .book-actions {
+        padding: 15px 20px;
+        border-top: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .action-btn {
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        text-decoration: none;
+        transition: all 0.2s;
+    }
+    .edit-btn { color: #007bff; background: rgba(0,123,255,0.1); }
+    .edit-btn:hover { background: #007bff; color: #fff; }
+    .delete-btn { color: #dc3545; background: rgba(220,53,69,0.1); }
+    .delete-btn:hover { background: #dc3545; color: #fff; }
+</style>
+
+<div class="section py-5">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Book cards -->
+            {% for i in data %}
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 book-card" data-book-name="{{ i.Bookname }}">
+                    <div class="book-card-container">
+                        <div class="book-img-wrapper">
+                            <img src="../static/media/{{i.Image}}" alt="{{ i.Bookname }}">
+                        </div>
+                        <div class="book-info">
+                            <h5 class="book-title">{{ i.Bookname }}</h5>
+                            <p class="book-description">{{ i.Description }}</p>
+                            <div class="book-meta">
+                                <div><i class="bi bi-tag"></i> {{ i.subject1 }}</div>
+                                <div class="text-truncate"><i class="bi bi-link-45deg"></i> <a href="{{i.link}}" target="_blank">View Document</a></div>
+                            </div>
+                        </div>
+                        <div class="book-actions">
+                            <a href="/edit_book?id={{i.id}}" class="action-btn edit-btn"><i class="bi bi-pencil-square"></i> Edit</a>
+                            <a href="/book_delete?id={{i.id}}" class="action-btn delete-btn" onclick="return confirm('Delete this book?')"><i class="bi bi-trash"></i> Delete</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript for filtering books by name
+    document.getElementById('bookSearch').addEventListener('input', function () {
+        const searchValue = this.value.toLowerCase();
+        const bookCards = document.querySelectorAll('.book-card');
+
+        bookCards.forEach(function (card) {
+            const bookName = card.getAttribute('data-book-name').toLowerCase();
+            const isMatch = bookName.includes(searchValue);
+
+            // Show or hide the card based on the search result
+            card.style.display = isMatch ? 'block' : 'none';
+        });
+    });
+</script>
+
+	
+	{% endblock %}
+
+
+	

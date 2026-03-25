@@ -1,0 +1,79 @@
+{% extends 'Student/common_st.html' %}
+{% load static %}
+{% for m in messages %}
+<script>
+    alert("{{m}}")
+</script>
+{% endfor %}
+{% block content %}
+	
+	<section class="hero-wrap" style="background-image: url('../static/images/bg_2.jpg');height: 350px;">
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-end justify-content-center">
+				<div class="col-md-9 ftco-animate pb-5 text-center">
+					<!-- <p class="breadcrumbs"><span class="mr-2"><a href="/studenthome">Home <i class="fa fa-chevron-right"></i></a></span> <span>Add Payment<i class="fa fa-chevron-right"></i></span></p>
+					<h1 class="mb-0 bread">Add Payment</h1> -->
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section class="ftco-section">
+		<!-- <div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6">
+					<div class="wrapper">
+						<div class="row no-gutters"> -->
+							<div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
+								<div class="contact-wrap w-100 p-md-5 p-4" style="margin-left: 400px;">
+									<h3 class="mb-4" style="margin-left: 80px;">Add Payment</h3>
+										<div class="container p-0">
+                                            <div class="card px-4">
+                                                <p class="h8 py-3" style="color: crimson;">Payment Details</p>
+                                                <form method="POST" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                   
+                                                <div class="row gx-3">
+                                                    <div class="col-12">
+                                                        <div class="d-flex flex-column">
+                                                            <p class="text mb-1">Card Number</p>
+                                                            <input class="form-control mb-3" type="text" name="cardno" placeholder="1234 5678 435678" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="d-flex flex-column">
+                                                            <p class="text mb-1">Expiry</p>
+                                                            <input class="form-control mb-3" type="text" name="expiry" placeholder="MM/YYYY" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="d-flex flex-column">
+                                                            <p class="text mb-1">CVV/CVC</p>
+                                                            <input class="form-control mb-3 pt-2 " name="cvv" type="password" placeholder="***" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <input type="submit" class="btn btn-primary" value="Pay">
+                                                    </div><br><br>
+                                                </div>
+                                            </form>
+                                            </div>
+                                        </div>
+								</div>
+							</div>
+							
+						<!-- </div>
+					</div>
+				</div>
+			</div>
+		</div> -->
+	</section>
+    <style>
+       p {
+            color: black;
+        }
+    </style>
+	{% endblock %}
+
+
+	
